@@ -1,32 +1,32 @@
-// ===== MENU MOBILE =====
-const menuToggle = document.createElement("div");
-menuToggle.classList.add("menu-toggle");
-menuToggle.innerHTML = "<span></span><span></span><span></span>";
-
-const nav = document.querySelector("nav");
-nav.appendChild(menuToggle);
-
+//  MENU MOBILE 
+const menuToggle = document.getElementById("menu-toggle");
 const menu = document.querySelector(".menu");
 
 menuToggle.addEventListener("click", () => {
-  menu.classList.toggle("show");
+  menu.classList.toggle("active");
 });
 
-// ===== SCROLL SUAVE =====
+// Fecha o menu ao clicar em um link
+document.querySelectorAll(".menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("active");
+  });
+});
+
+//  SCROLL SUAVE 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth"
-    });
-    // Fecha o menu no mobile
-    if (menu.classList.contains("show")) {
-      menu.classList.remove("show");
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
     }
   });
 });
 
-// ===== ANIMAÇÃO AO ROLAR =====
+// ANIMAÇÃO AO ROLAR 
 const sections = document.querySelectorAll("section");
 
 const options = {
